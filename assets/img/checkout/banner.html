@@ -17,26 +17,17 @@ body{font-family:Archivo,sans-serif;background:#0E1638;color:#fff;position:relat
 ul{list-style:none;margin-top:34px;display:grid;gap:16px}
 li{display:flex;align-items:center;gap:16px;font-size:34px;font-weight:700;letter-spacing:-.005em;font-variation-settings:"wdth" 108}
 li svg{width:34px;height:34px;flex:none;fill:none;stroke:#FFC23D;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.selo{position:absolute;left:64px;bottom:34px;font-size:22px;color:rgba(233,238,255,.78);display:flex;align-items:center;gap:10px}
-.ponto{width:14px;height:14px;border-radius:50%;background:#FF6A45}
-.mesa{position:absolute;right:56px;top:50px;width:440px;height:300px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.canal{background:#18234F;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px 24px}
-.canal b{display:block;font-size:26px;margin-bottom:22px;font-variation-settings:"wdth" 112}
-.vu{height:14px;border-radius:3px;margin-bottom:18px;background:linear-gradient(90deg,#7F93D6 0 50%,#FFC23D 50% 80%,#FF6A45 80% 100%);-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 4px),transparent calc(10% - 4px) 10%)}
-.canal small{display:block;font-size:18px;color:rgba(233,238,255,.7);margin-bottom:8px}
 </style></head><body>
 <div id="arte"></div>
 <script>
 const planos = {
   noar: { nome: 'No Ar', foto: '../estudio-igreja.jpg', itens: ['Até 100 ouvintes ao mesmo tempo', 'Cerca de 2.500 músicas', 'Suporte remoto incluso'] },
   estudio: { nome: 'Estúdio', destaque: true, foto: '../estudio-casa.jpg', itens: ['Até 500 ouvintes ao mesmo tempo', 'Som de FM e 5.000 músicas', 'Suporte remoto incluso'] },
-  emissora: { nome: 'Emissora', mesa: true, itens: ['2 rádios, ouvintes ilimitados', 'Som de alta qualidade', 'Prioridade no suporte remoto'] },
+  emissora: { nome: 'Emissora', foto: '../estudio-profissional.jpg', posicao: '68% center', itens: ['2 rádios, ouvintes ilimitados', 'Som de alta qualidade', 'Prioridade no suporte remoto'] },
 };
 const p = planos[new URLSearchParams(location.search).get('plano') || 'noar'];
 const certo = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-const direita = p.mesa
-  ? `<div class="mesa">${['Rádio 1', 'Rádio 2'].map(r => `<div class="canal"><b>${r}</b><small>Ouvintes</small><div class="vu"></div><small>Som</small><div class="vu"></div><small>Músicas</small><div class="vu" style="-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 4px),transparent calc(10% - 4px) 10%),linear-gradient(90deg,#000 90%,transparent 90%);-webkit-mask-composite:source-in"></div></div>`).join('')}</div>`
-  : `<div class="foto" style="background-image:url('${p.foto}')"></div>`;
+const direita = `<div class="foto" style="background-image:url('${p.foto}');background-position:${p.posicao || 'center'}"></div>`;
 document.getElementById('arte').innerHTML = direita + `
   <div class="texto">
     <img class="logo" src="../marca/zunocast-horizontal-branco.svg" alt="">
