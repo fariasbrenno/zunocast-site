@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Fonte dos banners do checkout (1200x400). Renderizado em 2x e gravado
+     como JPG: banner-noar.jpg, banner-estudio.jpg, banner-emissora.jpg.
+     Uso: banner.html?plano=noar|estudio|emissora -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Permanent+Marker&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:400px;overflow:hidden}
+body{font-family:Archivo,sans-serif;background:#0E1638;color:#fff;position:relative}
+.foto{position:absolute;right:0;top:0;width:560px;height:400px;background-size:cover;background-position:center}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0E1638 0%,rgba(14,22,56,.55) 28%,rgba(14,22,56,0) 60%)}
+.texto{position:absolute;left:64px;top:44px;width:700px}
+.logo{height:34px;display:block}
+.fita{display:inline-block;margin-top:34px;font-family:"Permanent Marker",cursive;font-size:64px;line-height:1;color:#1E2240;background:#E9DDB8;padding:10px 26px 6px;transform:rotate(-1.6deg);box-shadow:0 6px 16px rgba(0,0,0,.35);clip-path:polygon(1.5% 6%,99% 0,97.5% 55%,100% 96%,2% 100%,0 48%)}
+.fita.destaque{background:#F4E6A8}
+ul{list-style:none;margin-top:34px;display:grid;gap:16px}
+li{display:flex;align-items:center;gap:16px;font-size:34px;font-weight:700;letter-spacing:-.005em;font-variation-settings:"wdth" 108}
+li svg{width:34px;height:34px;flex:none;fill:none;stroke:#FFC23D;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.selo{position:absolute;left:64px;bottom:34px;font-size:22px;color:rgba(233,238,255,.78);display:flex;align-items:center;gap:10px}
+.ponto{width:14px;height:14px;border-radius:50%;background:#FF6A45}
+.mesa{position:absolute;right:56px;top:50px;width:440px;height:300px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.canal{background:#18234F;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px 24px}
+.canal b{display:block;font-size:26px;margin-bottom:22px;font-variation-settings:"wdth" 112}
+.vu{height:14px;border-radius:3px;margin-bottom:18px;background:linear-gradient(90deg,#7F93D6 0 50%,#FFC23D 50% 80%,#FF6A45 80% 100%);-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 4px),transparent calc(10% - 4px) 10%)}
+.canal small{display:block;font-size:18px;color:rgba(233,238,255,.7);margin-bottom:8px}
+</style></head><body>
+<div id="arte"></div>
+<script>
+const planos = {
+  noar: { nome: 'No Ar', foto: '../estudio-igreja.jpg', itens: ['Até 100 ouvintes ao mesmo tempo', 'Cerca de 2.500 músicas', 'Suporte remoto incluso'] },
+  estudio: { nome: 'Estúdio', destaque: true, foto: '../estudio-casa.jpg', itens: ['Até 500 ouvintes ao mesmo tempo', 'Som de FM e 5.000 músicas', 'Suporte remoto incluso'] },
+  emissora: { nome: 'Emissora', mesa: true, itens: ['2 rádios, ouvintes ilimitados', 'Som de alta qualidade', 'Prioridade no suporte remoto'] },
+};
+const p = planos[new URLSearchParams(location.search).get('plano') || 'noar'];
+const certo = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const direita = p.mesa
+  ? `<div class="mesa">${['Rádio 1', 'Rádio 2'].map(r => `<div class="canal"><b>${r}</b><small>Ouvintes</small><div class="vu"></div><small>Som</small><div class="vu"></div><small>Músicas</small><div class="vu" style="-webkit-mask:repeating-linear-gradient(90deg,#000 0 calc(10% - 4px),transparent calc(10% - 4px) 10%),linear-gradient(90deg,#000 90%,transparent 90%);-webkit-mask-composite:source-in"></div></div>`).join('')}</div>`
+  : `<div class="foto" style="background-image:url('${p.foto}')"></div>`;
+document.getElementById('arte').innerHTML = direita + `
+  <div class="texto">
+    <img class="logo" src="../marca/zunocast-horizontal-branco.svg" alt="">
+    <div><span class="fita${p.destaque ? ' destaque' : ''}">${p.nome}</span></div>
+    <ul>${p.itens.map(i => `<li>${certo}${i}</li>`).join('')}</ul>
+  </div>`;
+</script>
+</body></html>
