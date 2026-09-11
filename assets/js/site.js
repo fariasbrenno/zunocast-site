@@ -6,6 +6,13 @@ const CHECKOUT = {
   emissora: 'https://checkout.zunocast.com/c/tjbqm9a',
 };
 
+// WhatsApp do agente de vendas (botao flutuante). Numero com DDI e DDD, so
+// digitos, ex.: '5586999999999'. Vazio = botao escondido.
+const WHATSAPP = {
+  numero: '',
+  mensagem: 'Olá! Vim pelo site da Zunocast e quero saber mais sobre a web rádio.',
+};
+
 // Radios de exemplo do celular. Nomes ficticios.
 const ESTACOES = {
   louvor: {
@@ -92,3 +99,9 @@ document.querySelectorAll('[data-plano]').forEach((a) => {
   const link = CHECKOUT[a.dataset.plano];
   if (link) a.href = link;
 });
+
+const whats = document.getElementById('whats');
+if (whats && WHATSAPP.numero) {
+  whats.href = `https://wa.me/${WHATSAPP.numero}?text=${encodeURIComponent(WHATSAPP.mensagem)}`;
+  whats.hidden = false;
+}
