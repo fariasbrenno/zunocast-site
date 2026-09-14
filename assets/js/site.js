@@ -17,27 +17,31 @@ const WHATSAPP = {
 // cada uma com logo e fundo de uma radio ficticia. "O seu estilo" mostra o
 // app como ele sai do provisionamento (logo e fundo padrao do painel).
 // icone = cor do triangulo do play (no app real, a cor do fundo vaza por ele).
+// audio = trecho de musica da Pixabay (licenca de uso comercial, sem credito
+// obrigatorio); faixa = o que o app mostra enquanto toca, como o metadado
+// "Artista - Musica" da radio de verdade.
 const DEMO = 'assets/img/demo/';
+const AUDIO = 'assets/audio/demo/';
 const ESTACOES = {
   louvor: {
-    nome: 'Rádio Som do Céu', musica: 'Manhã de Louvor',
-    logo: `${DEMO}logo-louvor.svg`, fundo: `${DEMO}fundo-louvor.svg`, icone: '#232766',
+    nome: 'Rádio Som do Céu', musica: 'Manhã de Louvor', faixa: 'BatidasdoCeu - Firme na Rocha',
+    logo: `${DEMO}logo-louvor.svg`, fundo: `${DEMO}fundo-louvor.svg`, icone: '#232766', audio: `${AUDIO}louvor.mp3`,
   },
   flashback: {
-    nome: 'Flashback da Serra', musica: 'Clássicos dos anos 80',
-    logo: `${DEMO}logo-flashback.svg`, fundo: `${DEMO}fundo-flashback.svg`, icone: '#6e1a68',
+    nome: 'Flashback da Serra', musica: 'Clássicos dos anos 80', faixa: "Lesiakower - 80's Nostalgia",
+    logo: `${DEMO}logo-flashback.svg`, fundo: `${DEMO}fundo-flashback.svg`, icone: '#6e1a68', audio: `${AUDIO}flashback.mp3`,
   },
   noticias: {
-    nome: 'Voz do Vale', musica: 'Jornal da Cidade, ao vivo',
-    logo: `${DEMO}logo-noticias.svg`, fundo: `${DEMO}fundo-noticias.svg`, icone: '#0b2252',
+    nome: 'Voz do Vale', musica: 'Jornal da Cidade, ao vivo', faixa: 'Abertura - Jornal da Cidade',
+    logo: `${DEMO}logo-noticias.svg`, fundo: `${DEMO}fundo-noticias.svg`, icone: '#0b2252', audio: `${AUDIO}noticias.mp3`,
   },
   sertanejo: {
-    nome: 'Modão Raiz', musica: 'Viola e Saudade',
-    logo: `${DEMO}logo-sertanejo.svg`, fundo: `${DEMO}fundo-sertanejo.svg`, icone: '#652a3b',
+    nome: 'Modão Raiz', musica: 'Viola e Saudade', faixa: 'InácioDantas - Festa do Interior',
+    logo: `${DEMO}logo-sertanejo.svg`, fundo: `${DEMO}fundo-sertanejo.svg`, icone: '#652a3b', audio: `${AUDIO}sertanejo.mp3`,
   },
   seu: {
-    nome: 'A Sua Rádio', musica: 'A programação que você escolher',
-    logo: `${DEMO}logo-seu.jpg`, fundo: `${DEMO}fundo-seu.jpg`, icone: '#1B2C6B',
+    nome: 'A Sua Rádio', musica: 'A programação que você escolher', faixa: 'Eliete Campos - Parte da Paisagem',
+    logo: `${DEMO}logo-seu.jpg`, fundo: `${DEMO}fundo-seu.jpg`, icone: '#1B2C6B', audio: `${AUDIO}seu.mp3`,
   },
 };
 
@@ -79,7 +83,11 @@ const demo = {
   musica: document.getElementById('demo-musica'),
   logo: document.getElementById('demo-logo'),
   fundo: document.getElementById('demo-fundo'),
+  play: document.getElementById('demo-play'),
+  audio: document.getElementById('demo-audio'),
 };
+let atual = ESTACOES.louvor;
+const tocando = () => !demo.audio.paused;
 
 // O app real rola o nome da musica quando ele nao cabe na largura.
 function letreiro() {
@@ -92,15 +100,40 @@ function letreiro() {
   }
 }
 
+// Parado, a linha mostra o programa; tocando, "Artista - Musica", como o app.
+function mostrarMusica() {
+  demo.musica.textContent = tocando() ? atual.faixa : atual.musica;
+  demo.play.setAttribute('aria-pressed', String(tocando()));
+  demo.play.setAttribute('aria-label', `${tocando() ? 'Pausar' : 'Ouvir'} a ${atual.nome}`);
+  letreiro();
+}
+
 function preencher(dados) {
+  const continuar = tocando();
+  atual = dados;
   demo.nome.textContent = dados.nome;
-  demo.musica.textContent = dados.musica;
   demo.logo.src = dados.logo;
   demo.logo.alt = `Logo da ${dados.nome}`;
   demo.fundo.src = dados.fundo;
   fone.style.setProperty('--app-icone', dados.icone);
-  letreiro();
+  // Trocar de radio com o som ligado ja toca a proxima, como no app real.
+  if (!demo.audio.src.endsWith(dados.audio)) {
+    demo.audio.src = dados.audio;
+    if (continuar) demo.audio.play().catch(() => {});
+  }
+  mostrarMusica();
 }
+
+// So toca quando a pessoa aperta o play: nada de som sozinho na pagina.
+demo.play.addEventListener('click', () => {
+  if (tocando()) {
+    demo.audio.pause();
+  } else {
+    demo.audio.play().catch(() => {});
+  }
+});
+demo.audio.addEventListener('play', mostrarMusica);
+demo.audio.addEventListener('pause', mostrarMusica);
 
 function sintonizar(chave) {
   teclas.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.estacao === chave)));

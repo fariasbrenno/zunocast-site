@@ -245,12 +245,21 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .app__play {
   position: absolute; left: 34cqw; top: 68.6%; width: 32cqw; aspect-ratio: 1; border-radius: 50%;
-  background: var(--branco);
+  background: var(--branco); border: 0; padding: 0; cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); transition: box-shadow 0.2s ease, transform 0.1s ease;
 }
+.app__play:hover { box-shadow: 0 0 0 1.6cqw rgba(255, 255, 255, 0.22); }
+.app__play:active { transform: scale(0.97); }
+.app__play:focus-visible { outline: 3px solid var(--sol); outline-offset: 3px; }
 .app__play::after {
   content: ""; position: absolute; left: 12.5cqw; top: 8.5cqw;
   border-left: 10.5cqw solid var(--app-icone, var(--noite)); border-top: 7.5cqw solid transparent; border-bottom: 7.5cqw solid transparent;
   border-radius: 1cqw;
+}
+/* Tocando: o triângulo vira as duas barras do pause. */
+.app__play[aria-pressed="true"]::after {
+  left: 10.5cqw; top: 9.5cqw; width: 11cqw; height: 13cqw; border: 0; border-radius: 0;
+  background: linear-gradient(to right, var(--app-icone, var(--noite)) 0 36%, transparent 36% 64%, var(--app-icone, var(--noite)) 64%);
 }
 .fone__tela [id^="demo-"] { transition: opacity 0.18s ease; }
 .fone--trocando [id^="demo-"] { opacity: 0; }
