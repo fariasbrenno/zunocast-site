@@ -205,23 +205,53 @@ img { display: block; max-width: 100%; height: auto; }
   width: min(19rem, 86vw); padding: 0.7rem; border-radius: 2.4rem; background: var(--madrugada);
   box-shadow: 0 30px 60px -20px rgba(14, 22, 56, 0.55);
 }
-.fone__tela { border-radius: 1.8rem; overflow: hidden; background: var(--branco); color: var(--tinta); }
-.fone__barra { font-size: 0.75rem; text-align: center; padding: 0.55rem 1rem 0.45rem; background: var(--nevoa); color: var(--tinta-suave); }
-.fone__cabeca { background: var(--noite); color: var(--branco); padding: 1rem 1.1rem 1.1rem; }
-.fone__nome { font-variation-settings: "wdth" 112; font-weight: 800; font-size: 1.2rem; line-height: 1.2; }
-.fone__aovivo { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.35rem; font-size: 0.8rem; font-weight: 700; }
-.fone__aovivo span:last-child { font-weight: 400; color: var(--no-escuro); margin-left: 0.3rem; }
-.fone__player { display: flex; align-items: center; gap: 0.85rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--nevoa); }
-.fone__play { flex: none; width: 2.9rem; height: 2.9rem; border-radius: 50%; background: var(--noite); position: relative; }
-.fone__play::after {
-  content: ""; position: absolute; left: 1.1rem; top: 0.85rem;
-  border-left: 0.95rem solid var(--branco); border-top: 0.6rem solid transparent; border-bottom: 0.6rem solid transparent;
+.fone__tela { border-radius: 1.8rem; overflow: hidden; background: var(--madrugada); color: var(--branco); }
+
+/* Réplica do app da rádio (PWA, "Layout 1" do painel). As medidas saem da
+   tela real de 375x812: tudo em % da largura (cqw) ou da altura, para o
+   desenho ficar igual em qualquer tamanho de celular. */
+.app { position: relative; aspect-ratio: 375 / 812; container-type: inline-size; }
+.app__fundo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.app__menu {
+  position: absolute; left: 4cqw; top: 2.7%; width: 8cqw; height: 8cqw; border-radius: 1cqw;
+  background: var(--branco); display: grid; place-items: center;
 }
-.fone__rotulo { display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--tinta-suave); }
-.fone__programa { font-weight: 700; font-size: 0.98rem; line-height: 1.3; }
-.fone__chat { padding: 0.9rem 1.1rem 1.2rem; display: grid; gap: 0.5rem; }
-.balao { background: var(--nevoa); border-radius: 0.9rem; padding: 0.5rem 0.75rem; font-size: 0.82rem; line-height: 1.4; }
-.balao b { color: var(--noite); }
+.app__menu span, .app__menu span::before, .app__menu span::after {
+  display: block; width: 3.6cqw; height: 0.55cqw; border-radius: 1px; background: #212529;
+}
+.app__menu span { position: relative; }
+.app__menu span::before, .app__menu span::after { content: ""; position: absolute; left: 0; }
+.app__menu span::before { top: -1.2cqw; }
+.app__menu span::after { top: 1.2cqw; }
+.app__capa {
+  position: absolute; left: 13.3cqw; top: 2.8%; width: 73.4cqw; aspect-ratio: 1;
+  border-radius: 50%; border: 4.3cqw solid rgba(255, 255, 255, 0.32); overflow: hidden;
+}
+.app__capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.app__nome, .app__musica {
+  position: absolute; left: 5cqw; right: 5cqw; margin: 0; text-align: center; white-space: nowrap;
+  font-family: "Unica One", "Archivo", sans-serif; font-size: 9.6cqw; line-height: 1.2; color: var(--branco);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.app__nome { top: 42.8%; overflow: hidden; text-overflow: ellipsis; }
+.app__musica { top: 50.6%; overflow: hidden; }
+.app__musica span { display: inline-block; }
+/* O app real rola o nome da música quando ele não cabe; aqui também. */
+.app__musica--rolando { text-align: left; }
+.app__musica--rolando span { animation: letreiro 9s ease-in-out infinite alternate; }
+@keyframes letreiro {
+  0%, 15% { transform: translateX(0); }
+  85%, 100% { transform: translateX(var(--rolar, 0)); }
+}
+.app__play {
+  position: absolute; left: 34cqw; top: 68.6%; width: 32cqw; aspect-ratio: 1; border-radius: 50%;
+  background: var(--branco);
+}
+.app__play::after {
+  content: ""; position: absolute; left: 12.5cqw; top: 8.5cqw;
+  border-left: 10.5cqw solid var(--app-icone, var(--noite)); border-top: 7.5cqw solid transparent; border-bottom: 7.5cqw solid transparent;
+  border-radius: 1cqw;
+}
 .fone__tela [id^="demo-"] { transition: opacity 0.18s ease; }
 .fone--trocando [id^="demo-"] { opacity: 0; }
 

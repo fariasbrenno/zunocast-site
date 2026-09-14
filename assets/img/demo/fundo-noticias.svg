@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#040b20"/>
+      <stop offset=".55" stop-color="#0b2252"/>
+      <stop offset="1" stop-color="#071636"/>
+    </linearGradient>
+    <radialGradient id="brilho" cx="187.5" cy="470" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2d6fd6" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#2d6fd6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="alerta" cx="0" cy="812" r="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d62839" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#d62839" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="pontos" width="15" height="15" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r=".9" fill="#8fbfff" opacity=".22"/>
+    </pattern>
+  </defs>
+  <rect width="375" height="812" fill="url(#f)"/>
+  <rect width="375" height="812" fill="url(#pontos)"/>
+  <rect width="375" height="812" fill="url(#brilho)"/>
+  <g transform="translate(187.5 470)" fill="none" stroke="#7fb8ff" stroke-width="1.2" opacity=".3">
+    <circle r="230"/>
+    <ellipse rx="176" ry="230"/><ellipse rx="115" ry="230"/><ellipse rx="52" ry="230"/>
+    <line x1="0" y1="-230" x2="0" y2="230"/>
+    <line x1="-230" y1="0" x2="230" y2="0"/>
+    <line x1="-222" y1="-60" x2="222" y2="-60"/><line x1="-222" y1="60" x2="222" y2="60"/>
+    <line x1="-196" y1="-120" x2="196" y2="-120"/><line x1="-196" y1="120" x2="196" y2="120"/>
+    <line x1="-143" y1="-180" x2="143" y2="-180"/><line x1="-143" y1="180" x2="143" y2="180"/>
+  </g>
+  <rect width="375" height="812" fill="url(#alerta)"/>
+  <path d="M0 812 V742 H18 V716 H40 V730 H56 V690 H80 V724 H96 V704 H120 V736 H138 V676 H150 V664 H162 V676 H174 V728 H196 V700 H222 V742 H236 V712 H262 V690 H286 V730 H300 V708 H322 V734 H342 V696 H362 V740 H375 V812 Z" fill="#040a1e"/>
+  <g fill="#ffd76a" opacity=".55">
+    <rect x="62" y="698" width="3" height="4"/><rect x="70" y="710" width="3" height="4"/>
+    <rect x="142" y="684" width="3" height="4"/><rect x="154" y="700" width="3" height="4"/>
+    <rect x="202" y="708" width="3" height="4"/><rect x="212" y="720" width="3" height="4"/>
+    <rect x="268" y="698" width="3" height="4"/><rect x="276" y="712" width="3" height="4"/>
+    <rect x="348" y="706" width="3" height="4"/><rect x="26" y="724" width="3" height="4"/>
+  </g>
+</svg>

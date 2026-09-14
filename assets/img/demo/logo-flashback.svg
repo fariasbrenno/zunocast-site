@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <radialGradient id="f" cx=".5" cy=".42" r=".75">
+      <stop offset="0" stop-color="#34106a"/>
+      <stop offset="1" stop-color="#0d0422"/>
+    </radialGradient>
+    <linearGradient id="cromo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff7b8"/>
+      <stop offset=".5" stop-color="#ffad45"/>
+      <stop offset="1" stop-color="#ff3f8e"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#f)"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="102" y="62" width="96" height="60" rx="8" stroke="#5ef2ff" stroke-width="3.5"/>
+    <rect x="118" y="76" width="64" height="22" rx="11" stroke="#5ef2ff" stroke-width="2.5"/>
+    <circle cx="131" cy="87" r="6" stroke="#ff5fd2" stroke-width="3"/>
+    <circle cx="169" cy="87" r="6" stroke="#ff5fd2" stroke-width="3"/>
+    <path d="M122 122 L130 108 H170 L178 122" stroke="#5ef2ff" stroke-width="2.5"/>
+  </g>
+  <text x="150" y="182" text-anchor="middle" font-family="'Arial Black', 'Arial', sans-serif" font-weight="900" font-style="italic" font-size="40" fill="url(#cromo)" stroke="#ff4fd8" stroke-width=".8" textLength="236" lengthAdjust="spacingAndGlyphs">FLASHBACK</text>
+  <text x="150" y="216" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="17" letter-spacing="9" fill="#5ef2ff" textLength="150" lengthAdjust="spacing">DA SERRA</text>
+  <line x1="92" y1="236" x2="208" y2="236" stroke="#ff4fd8" stroke-width="2"/>
+  <text x="150" y="258" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="12" letter-spacing="4" fill="#ffd23f">70 · 80 · 90</text>
+</svg>

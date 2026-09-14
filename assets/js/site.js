@@ -13,39 +13,40 @@ const WHATSAPP = {
   mensagem: 'Olá! Vim pelo site da Zunocast e quero saber mais sobre a web rádio.',
 };
 
-// Radios de exemplo do celular. Nomes ficticios.
+// Radios de exemplo no celular: a replica do app (PWA) que o cliente recebe,
+// cada uma com logo e fundo de uma radio ficticia. "O seu estilo" mostra o
+// app como ele sai do provisionamento (logo e fundo padrao do painel).
+// icone = cor do triangulo do play (no app real, a cor do fundo vaza por ele).
+const DEMO = 'assets/img/demo/';
 const ESTACOES = {
   louvor: {
-    endereco: 'somdoceu.zunofm.com', nome: 'Rádio Som do Céu', ouvintes: '37 ouvindo',
-    programa: 'Manhã de Louvor',
-    autor1: 'Irmã Célia', msg1: 'Graça e paz! Ouvindo daqui do trabalho.',
-    autor2: 'Pr. Anderson', msg2: 'Hoje tem culto ao vivo às 19h.',
+    nome: 'Rádio Som do Céu', musica: 'Manhã de Louvor',
+    logo: `${DEMO}logo-louvor.svg`, fundo: `${DEMO}fundo-louvor.svg`, icone: '#232766',
   },
   flashback: {
-    endereco: 'flashbackdaserra.zunofm.com', nome: 'Flashback da Serra', ouvintes: '52 ouvindo',
-    programa: 'Clássicos dos anos 80',
-    autor1: 'Marcos', msg1: 'Essa me lembra o baile de sábado!',
-    autor2: 'Rita', msg2: 'Toca aquela lenta, por favor.',
+    nome: 'Flashback da Serra', musica: 'Clássicos dos anos 80',
+    logo: `${DEMO}logo-flashback.svg`, fundo: `${DEMO}fundo-flashback.svg`, icone: '#6e1a68',
   },
   noticias: {
-    endereco: 'vozdovale.zunofm.com', nome: 'Voz do Vale', ouvintes: '118 ouvindo',
-    programa: 'Jornal da Cidade, ao vivo',
-    autor1: 'Seu Zé da feira', msg1: 'Manda um alô pro pessoal do mercado!',
-    autor2: 'Paula', msg2: 'A estrada pro sítio já foi liberada?',
+    nome: 'Voz do Vale', musica: 'Jornal da Cidade, ao vivo',
+    logo: `${DEMO}logo-noticias.svg`, fundo: `${DEMO}fundo-noticias.svg`, icone: '#0b2252',
   },
   sertanejo: {
-    endereco: 'modaoraiz.zunofm.com', nome: 'Modão Raiz', ouvintes: '64 ouvindo',
-    programa: 'Viola e Saudade',
-    autor1: 'Tião', msg1: 'Ouvindo aqui na roça, som limpinho.',
-    autor2: 'Dona Lurdes', msg2: 'Oferece essa pro meu marido!',
+    nome: 'Modão Raiz', musica: 'Viola e Saudade',
+    logo: `${DEMO}logo-sertanejo.svg`, fundo: `${DEMO}fundo-sertanejo.svg`, icone: '#652a3b',
   },
   seu: {
-    endereco: 'suaradio.zunofm.com', nome: 'A Sua Rádio', ouvintes: '12 ouvindo',
-    programa: 'A programação que você escolher',
-    autor1: 'Ouvinte', msg1: 'Primeira vez aqui, gostei!',
-    autor2: 'Você', msg2: 'Seja bem-vindo! Manda seu pedido.',
+    nome: 'A Sua Rádio', musica: 'A programação que você escolher',
+    logo: `${DEMO}logo-seu.jpg`, fundo: `${DEMO}fundo-seu.jpg`, icone: '#1B2C6B',
   },
 };
+
+// Baixa as imagens de todas as radios antes do primeiro clique, para a troca
+// nao piscar com o celular vazio.
+Object.values(ESTACOES).forEach(({ logo, fundo }) => {
+  new Image().src = logo;
+  new Image().src = fundo;
+});
 
 const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -73,11 +74,32 @@ if (placa) {
 const fone = document.querySelector('.fone');
 const teclas = document.querySelectorAll('.tecla');
 
-function preencher(dados) {
-  for (const [campo, valor] of Object.entries(dados)) {
-    const alvo = document.getElementById(`demo-${campo}`);
-    if (alvo) alvo.textContent = valor;
+const demo = {
+  nome: document.getElementById('demo-nome'),
+  musica: document.getElementById('demo-musica'),
+  logo: document.getElementById('demo-logo'),
+  fundo: document.getElementById('demo-fundo'),
+};
+
+// O app real rola o nome da musica quando ele nao cabe na largura.
+function letreiro() {
+  const linha = demo.musica.parentElement;
+  linha.classList.remove('app__musica--rolando');
+  const sobra = demo.musica.scrollWidth - linha.clientWidth;
+  if (sobra > 0 && !reduzir) {
+    linha.style.setProperty('--rolar', `${-sobra}px`);
+    linha.classList.add('app__musica--rolando');
   }
+}
+
+function preencher(dados) {
+  demo.nome.textContent = dados.nome;
+  demo.musica.textContent = dados.musica;
+  demo.logo.src = dados.logo;
+  demo.logo.alt = `Logo da ${dados.nome}`;
+  demo.fundo.src = dados.fundo;
+  fone.style.setProperty('--app-icone', dados.icone);
+  letreiro();
 }
 
 function sintonizar(chave) {
@@ -94,6 +116,10 @@ function sintonizar(chave) {
 }
 
 teclas.forEach((t) => t.addEventListener('click', () => sintonizar(t.dataset.estacao)));
+preencher(ESTACOES.louvor);
+// A fonte do app chega depois do primeiro desenho e muda a largura do texto.
+if (document.fonts) document.fonts.ready.then(letreiro);
+window.addEventListener('resize', letreiro);
 
 document.querySelectorAll('[data-plano]').forEach((a) => {
   const link = CHECKOUT[a.dataset.plano];

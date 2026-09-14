@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <radialGradient id="f" cx=".5" cy=".4" r=".75">
+      <stop offset="0" stop-color="#1a3d86"/>
+      <stop offset="1" stop-color="#081735"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#f)"/>
+  <g fill="none" stroke="#7fb8ff" stroke-width="3" stroke-linecap="round" opacity=".85">
+    <path d="M96 76 a60 60 0 0 0 0 56"/><path d="M204 76 a60 60 0 0 1 0 56"/>
+    <path d="M84 64 a80 80 0 0 0 0 80" opacity=".6"/><path d="M216 64 a80 80 0 0 1 0 80" opacity=".6"/>
+  </g>
+  <circle cx="150" cy="104" r="40" fill="#d62839"/>
+  <rect x="140" y="78" width="20" height="34" rx="10" fill="#fff"/>
+  <path d="M131 103 a19 19 0 0 0 38 0" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M150 122 V131 M140 131 H160" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="150" y="180" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="19" letter-spacing="8" fill="#cfe0ff" textLength="118" lengthAdjust="spacing">VOZ DO</text>
+  <text x="150" y="232" text-anchor="middle" font-family="'Arial Black', 'Arial', sans-serif" font-weight="900" font-size="56" fill="#fff" textLength="176" lengthAdjust="spacingAndGlyphs">VALE</text>
+  <rect x="94" y="242" width="112" height="21" rx="3" fill="#d62839"/>
+  <text x="150" y="257" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="12" letter-spacing="3" fill="#fff">NOTÍCIAS</text>
+</svg>

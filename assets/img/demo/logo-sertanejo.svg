@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <radialGradient id="f" cx=".5" cy=".4" r=".75">
+      <stop offset="0" stop-color="#6a3f22"/>
+      <stop offset="1" stop-color="#26140a"/>
+    </radialGradient>
+    <linearGradient id="ouro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe2a0"/>
+      <stop offset="1" stop-color="#d49a45"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#f)"/>
+  <g fill="none" stroke="#000" stroke-width="1" opacity=".14">
+    <path d="M0 40 Q150 20 300 46"/><path d="M0 96 Q150 80 300 104"/>
+    <path d="M0 196 Q150 180 300 206"/><path d="M0 254 Q150 240 300 262"/>
+  </g>
+  <circle cx="150" cy="150" r="132" fill="none" stroke="#d9a55a" stroke-width="3" stroke-dasharray="1 6" stroke-linecap="round"/>
+  <circle cx="150" cy="150" r="123" fill="none" stroke="#d9a55a" stroke-width="1.4" opacity=".7"/>
+  <path d="M120 106 Q121 68 136 66 Q150 76 164 66 Q179 68 180 106 Q150 114 120 106 Z" fill="url(#ouro)"/>
+  <path d="M121 98 Q150 106 179 98" fill="none" stroke="#6b3517" stroke-width="5"/>
+  <path d="M88 104 Q150 132 212 104 Q200 122 150 124 Q100 122 88 104 Z" fill="url(#ouro)"/>
+  <text x="150" y="182" text-anchor="middle" font-family="'Arial Black', 'Arial', sans-serif" font-weight="900" font-size="48" fill="url(#ouro)" textLength="200" lengthAdjust="spacingAndGlyphs">MODÃO</text>
+  <text x="150" y="222" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="25" fill="#fff3dc" textLength="112" lengthAdjust="spacing">RAIZ</text>
+  <g fill="#d9a55a">
+    <polygon points="78,213 81,219 88,220 83,225 84,232 78,228 72,232 73,225 68,220 75,219"/>
+    <polygon points="222,213 225,219 232,220 227,225 228,232 222,228 216,232 217,225 212,220 219,219"/>
+  </g>
+  <text x="150" y="250" text-anchor="middle" font-family="'Arial', sans-serif" font-weight="700" font-size="9" fill="#d9a55a" textLength="118" lengthAdjust="spacingAndGlyphs">SERTANEJO DE VERDADE</text>
+</svg>
