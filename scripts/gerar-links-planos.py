@@ -37,7 +37,7 @@ PLANOS = [
     {
         'chave': 'estudio', 'pasta': 'estudio', 'nome': 'Estúdio', 'preco': '69,90', 'dia': '2,33', 'destaque': True,
         'checkout': 'https://checkout.zunocast.com/c/ws361cd',
-        'para': 'O mais escolhido: som de FM e espaço de sobra.',
+        'para': 'O recomendado para a maioria: som de FM e espaço de sobra.',
         'medidores': [('Ouvintes', 5, 'até 500 ao mesmo tempo'), ('Som', 7, 'de FM'), ('Músicas', 6, 'cerca de 5.000')],
         'extra': '1 rádio',
         'resumo': 'Até 500 ouvintes ao mesmo tempo, som de FM, site, app e bate-papo, e suporte remoto incluso.',
@@ -124,7 +124,7 @@ def canal(p):
     )
     destaque = p.get('destaque')
     return f'''      <article class="canal{' canal--destaque' if destaque else ''}">
-        {'<p class="canal__selo">Mais escolhido</p>' if destaque else ''}
+        {'<p class="canal__selo">Recomendado</p>' if destaque else ''}
         <h2 class="fita">{E(p["nome"])}</h2>
         <p class="canal__para">{E(p["para"])}</p>
         <p class="canal__preco"><span class="canal__rs">R$</span>{p["preco"]}<span class="canal__mes">/mês</span></p>
