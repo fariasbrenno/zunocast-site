@@ -9,7 +9,7 @@ const CHECKOUT = {
 // WhatsApp do agente de vendas (botao flutuante). Numero com DDI e DDD, so
 // digitos, ex.: '5586999999999'. Vazio = botao escondido.
 const WHATSAPP = {
-  numero: '',
+  numero: '5511943278663',
   mensagem: 'Olá! Vim pelo site da Zunocast e quero saber mais sobre a web rádio.',
 };
 
