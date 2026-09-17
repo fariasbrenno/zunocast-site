@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<!-- Fonte das imagens de prévia dos links (1200x630), as que aparecem no
+     WhatsApp quando a Ana manda zunocast.com/no-ar, /estudio, /emissora ou
+     /planos. Renderizado e gravado como JPG: og-noar.jpg, og-estudio.jpg,
+     og-emissora.jpg, og-planos.jpg. Uso: og.html?plano=noar|estudio|emissora|planos -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Permanent+Marker&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{font-family:Archivo,sans-serif;background:#0E1638;color:#fff;position:relative}
+.foto{position:absolute;right:0;top:0;width:620px;height:630px;background-size:cover;background-position:center}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0E1638 0%,rgba(14,22,56,.6) 30%,rgba(14,22,56,0) 62%)}
+.texto{position:absolute;left:68px;top:58px;width:720px}
+.logo{height:40px;display:block}
+.fita{display:inline-block;margin-top:44px;font-family:"Permanent Marker",cursive;font-size:78px;line-height:1;color:#1E2240;background:#E9DDB8;padding:12px 30px 8px;transform:rotate(-1.6deg);box-shadow:0 6px 16px rgba(0,0,0,.35);clip-path:polygon(1.5% 6%,99% 0,97.5% 55%,100% 96%,2% 100%,0 48%)}
+.fita.destaque{background:#F4E6A8}
+.preco{margin-top:34px;font-size:70px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.preco small{font-size:30px;font-weight:600;color:rgba(233,238,255,.75);letter-spacing:0}
+ul{list-style:none;margin-top:34px;display:grid;gap:14px}
+li{display:flex;align-items:center;gap:16px;font-size:32px;font-weight:700;font-variation-settings:"wdth" 108}
+li svg{width:32px;height:32px;flex:none;fill:none;stroke:#FFC23D;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.canais{display:flex;gap:14px;margin-top:40px}
+.canal{background:#18234F;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px 20px 18px;width:238px}
+.canal.destaque{background:#1D2B5E;border-color:rgba(255,194,61,.6)}
+.canal .fita{font-size:34px;margin-top:0;padding:6px 14px 4px}
+.canal p{margin-top:18px;font-size:30px;font-weight:800;white-space:nowrap}
+.canal p small{font-size:18px;color:rgba(233,238,255,.7);font-weight:600}
+.titulo{margin-top:44px;font-size:62px;font-weight:800;line-height:1.05;letter-spacing:-.015em}
+</style></head><body>
+<div id="arte"></div>
+<script>
+const planos = {
+  noar: { nome: 'No Ar', preco: '39,90', foto: '../estudio-igreja.jpg', itens: ['Até 100 ouvintes ao mesmo tempo', 'Site, app e bate-papo', 'Suporte remoto incluso'] },
+  estudio: { nome: 'Estúdio', preco: '69,90', destaque: true, foto: '../estudio-casa.jpg', itens: ['Até 500 ouvintes, som de FM', 'Site, app e bate-papo', 'Suporte remoto incluso'] },
+  emissora: { nome: 'Emissora', preco: '139,90', foto: '../estudio-profissional.jpg', posicao: '68% center', itens: ['2 rádios, ouvintes ilimitados', 'Som de alta qualidade', 'Prioridade no suporte'] },
+};
+const chave = new URLSearchParams(location.search).get('plano') || 'noar';
+const certo = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const logo = '<img class="logo" src="../marca/zunocast-horizontal-branco.svg" alt="">';
+const arte = document.getElementById('arte');
+if (chave === 'planos') {
+  arte.innerHTML = `<div class="foto" style="background-image:url('../estudio-casa.jpg')"></div>
+    <div class="texto">${logo}
+      <p class="titulo">Escolha o plano<br>da sua rádio</p>
+      <div class="canais">${Object.values(planos).map(p => `<div class="canal${p.destaque ? ' destaque' : ''}">
+        <span class="fita${p.destaque ? ' destaque' : ''}">${p.nome}</span><p>R$ ${p.preco}<small>/mês</small></p></div>`).join('')}</div>
+    </div>`;
+} else {
+  const p = planos[chave];
+  arte.innerHTML = `<div class="foto" style="background-image:url('${p.foto}');background-position:${p.posicao || 'center'}"></div>
+    <div class="texto">${logo}
+      <div><span class="fita${p.destaque ? ' destaque' : ''}">${p.nome}</span></div>
+      <p class="preco">R$ ${p.preco}<small> /mês</small></p>
+      <ul>${p.itens.map(i => `<li>${certo}${i}</li>`).join('')}</ul>
+    </div>`;
+}
+</script>
+</body></html>
