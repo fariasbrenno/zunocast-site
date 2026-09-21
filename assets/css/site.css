@@ -316,6 +316,60 @@ img { display: block; max-width: 100%; height: auto; }
   .grade { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 5rem; align-items: center; }
 }
 
+/* ---------- vitrine: o site e o painel reais ----------
+   Prints da rádio de exemplo (Rádio Som do Céu, porta 6676) numa moldura de
+   navegador: o visitante vê o produto de verdade, não uma ilustração. */
+.vitrine__topo { max-width: 46rem; }
+.vitrine__lead { margin-top: 1.25rem; color: var(--no-escuro); }
+.endereco--claro { color: var(--branco); }
+.navegador { margin: 0; border-radius: 12px; overflow: hidden; background: #0b1030; box-shadow: 0 34px 70px -30px rgba(0, 0, 0, 0.7); }
+.navegador--grande { margin-top: 2.75rem; }
+.navegador__barra {
+  display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.9rem;
+  background: #1c2658; color: rgba(233, 238, 255, 0.72); font-size: 0.8rem;
+}
+.navegador__barra span { width: 0.62rem; height: 0.62rem; border-radius: 50%; background: rgba(233, 238, 255, 0.28); }
+.navegador__barra b {
+  margin-left: 0.8rem; flex: 1; max-width: 22rem; padding: 0.2rem 0.75rem; border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.navegador img { width: 100%; }
+.navegador figcaption { padding: 0.8rem 1rem; font-size: 0.9rem; background: var(--branco); color: var(--tinta-suave); }
+.vitrine__legenda { margin-top: 1rem; font-size: 0.92rem; color: var(--no-escuro-suave); }
+.vitrine__legenda a { color: var(--sol); font-weight: 700; }
+.vitrine__legenda--escura { color: var(--tinta-suave); }
+.vitrine__legenda--escura a { color: var(--noite); }
+.vitrine__destaques { margin-top: 3.5rem; display: grid; gap: 2.25rem; align-items: center; }
+.vitrine__destaques > * { min-width: 0; }
+.vitrine__dois { display: grid; gap: 1.75rem; }
+.vitrine__dois h3 { color: var(--sol); font-size: 1.3rem; }
+.vitrine__dois p { margin-top: 0.5rem; color: var(--no-escuro); max-width: 30rem; }
+.vitrine__paginas {
+  list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 0.7rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); color: var(--no-escuro);
+}
+.vitrine__paginas li { position: relative; padding-left: 1.5rem; }
+.vitrine__paginas li::before {
+  content: ""; position: absolute; left: 0.1rem; top: 0.45em; width: 0.7rem; height: 0.4rem;
+  border-left: 2.5px solid var(--sol); border-bottom: 2.5px solid var(--sol); transform: rotate(-45deg);
+}
+@media (min-width: 62rem) {
+  .vitrine__destaques { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 4rem; }
+  .vitrine__paginas { grid-template-columns: repeat(4, 1fr); }
+}
+
+.painel-secao { background: var(--nevoa); padding: var(--secao) 0; }
+.painel-secao__lead { margin-top: 1.25rem; color: var(--tinta-suave); }
+.navegador--claro { background: var(--branco); box-shadow: 0 30px 60px -30px rgba(14, 22, 56, 0.45); }
+.navegador--claro .navegador__barra { background: #D9DEEC; color: var(--tinta-suave); }
+.navegador--claro .navegador__barra span { background: #B7BED3; }
+.navegador--claro .navegador__barra b { background: rgba(255, 255, 255, 0.7); }
+.painel-secao__grade { margin-top: 2.75rem; display: grid; gap: 2rem; align-items: start; }
+.painel-secao__grade > * { min-width: 0; }
+@media (min-width: 62rem) {
+  .painel-secao__grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; }
+}
+
 /* ---------- parede (suporte e fecho) ---------- */
 .parede { background: var(--noite); color: var(--branco); padding: var(--secao) 0; }
 .suporte { display: grid; gap: 3rem; }
