@@ -160,12 +160,13 @@ def pagina_de_escolha():
              '.escolha .rodape { margin-top: 3rem; }\n'
              '</style>\n')
     titulo = 'Escolha o plano da sua rádio | Zunocast'
-    descricao = 'No Ar, Estúdio ou Emissora: todos com site, app, bate-papo e suporte remoto. A partir de R$ 39,90 por mês, sem fidelidade.'
+    descricao = 'No Ar, Estúdio ou Emissora: todos com site, app, bate-papo, mais de 140 programas e programetes e suporte remoto. A partir de R$ 39,90 por mês, sem fidelidade.'
     icones = '''<svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
   <symbol id="i-site" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.8h.01M9 6.8h.01"/></symbol>
   <symbol id="i-microfone" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
   <symbol id="i-celular" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-programa" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M7 9.5h6M7 13h4M7 16.5h7"/><path d="M15.5 11.5l3 1.8-3 1.8z"/></symbol>
   <symbol id="i-suporte" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4.5" height="6" rx="1.8"/><rect x="16.5" y="14" width="4.5" height="6" rx="1.8"/></symbol>
   <symbol id="i-livre" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 7.6-1.7"/></symbol>
 </svg>'''
@@ -178,7 +179,7 @@ def pagina_de_escolha():
   <main class="caixa">
     <div class="escolha__cabeca">
       <h1>Escolha o plano da sua rádio</h1>
-      <p>Todos já vêm com a rádio tocando 24 horas, site, aplicativo, bate-papo e suporte remoto. Preço por mês, sem fidelidade e sem taxa de instalação.</p>
+      <p>Todos já vêm com a rádio tocando 24 horas, site, aplicativo, bate-papo, mais de 140 programas e programetes e suporte remoto. Preço por mês, sem fidelidade e sem taxa de instalação.</p>
     </div>
     <div class="mesa">
 {''.join(canal(p) for p in PLANOS)}    </div>
@@ -186,6 +187,7 @@ def pagina_de_escolha():
       <h3>Em todos os planos</h3>
       <ul>
         <li><svg class="icone"><use href="#i-relogio"/></svg>Toca 24 horas sozinha</li>
+        <li><svg class="icone"><use href="#i-programa"/></svg>Mais de 140 programas e programetes</li>
         <li><svg class="icone"><use href="#i-site"/></svg>Site com player e bate-papo</li>
         <li><svg class="icone"><use href="#i-microfone"/></svg>Ao vivo pelo navegador</li>
         <li><svg class="icone"><use href="#i-celular"/></svg>Aplicativo pro ouvinte</li>
