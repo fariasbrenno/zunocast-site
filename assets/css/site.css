@@ -281,6 +281,8 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------- programas e programetes ----------
    O quadro e a grade do dia presa na parede do estudio, com a fita crepe
    dos canais da mesa. Mostra, sem explicar, como fica a rádio com programa. */
+/* Marca-texto amarelo nas palavras que o título quer destacar. */
+mark.realce { color: inherit; background: linear-gradient(transparent 56%, rgba(255, 194, 61, 0.8) 56%, rgba(255, 194, 61, 0.8) 92%, transparent 92%); padding: 0 0.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .grade { display: grid; gap: 3rem; }
 .grade > * { min-width: 0; }
 .grade__lead { margin-top: 1.25rem; max-width: 36rem; color: var(--tinta-suave); }
