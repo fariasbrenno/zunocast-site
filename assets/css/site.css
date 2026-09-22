@@ -422,6 +422,29 @@ mark.realce { color: inherit; background: linear-gradient(transparent 56%, rgba(
   .estilo__legenda a { margin-left: 0; }
 }
 
+/* ---------- amostras de programas e programetes ---------- */
+.amostras { margin-top: 3.5rem; }
+.amostras h3 { color: var(--noite); font-size: 1.45rem; }
+.amostras__sub { margin-top: 0.4rem; color: var(--tinta-suave); }
+.amostras__lista { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.amostra {
+  width: 100%; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto auto; column-gap: 0.9rem; row-gap: 0.1rem;
+  align-items: center; text-align: left; padding: 0.9rem 1rem; border: 1px solid rgba(27, 44, 107, 0.14); border-radius: var(--raio);
+  background: var(--branco); color: var(--tinta); font: inherit; cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.amostra:hover { border-color: var(--noite); box-shadow: 0 8px 20px -12px rgba(14, 22, 56, 0.45); }
+.amostra__play {
+  grid-row: 1 / 3; width: 2.9rem; height: 2.9rem; border-radius: 50%; background: var(--noite); display: grid; place-items: center;
+}
+.amostra__play::after { content: ""; margin-left: 0.2rem; border-left: 0.8rem solid var(--sol); border-top: 0.5rem solid transparent; border-bottom: 0.5rem solid transparent; }
+.amostra[aria-pressed="true"] .amostra__play { background: var(--coral); }
+.amostra[aria-pressed="true"] .amostra__play::after { margin: 0; width: 0.75rem; height: 0.85rem; border: 0; border-left: 0.25rem solid var(--branco); border-right: 0.25rem solid var(--branco); }
+.amostra__nome { font-weight: 720; color: var(--noite); }
+.amostra__tipo { font-size: 0.86rem; color: var(--tinta-suave); }
+.amostra__barra { grid-column: 1 / -1; margin-top: 0.7rem; height: 4px; border-radius: 4px; background: var(--nevoa); overflow: hidden; }
+.amostra__barra i { display: block; height: 100%; width: 0; background: var(--coral); }
+@media (min-width: 62rem) { .amostras__lista { grid-template-columns: repeat(3, 1fr); } }
+
 /* ---------- parede (suporte e fecho) ---------- */
 .parede { background: var(--noite); color: var(--branco); padding: var(--secao) 0; }
 .suporte { display: grid; gap: 3rem; }

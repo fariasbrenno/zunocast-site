@@ -203,3 +203,34 @@ if (trilho) {
     if (!parado && !pausa && !document.hidden) ir(atual + 1);
   }, 5000);
 }
+
+// Amostras de programas e programetes: um áudio só, um trecho por vez. Tocar
+// uma amostra pausa o celular de demonstração, e vice-versa.
+const amostraAudio = document.getElementById('amostra-audio');
+if (amostraAudio) {
+  const botoes = [...document.querySelectorAll('.amostra')];
+  const demoAudio = document.getElementById('demo-audio');
+  let atual = null;
+  const soltar = () => {
+    if (!atual) return;
+    atual.setAttribute('aria-pressed', 'false');
+    atual.querySelector('.amostra__barra i').style.width = '0';
+    atual = null;
+  };
+  botoes.forEach((b) => b.addEventListener('click', () => {
+    if (atual === b && !amostraAudio.paused) { amostraAudio.pause(); soltar(); return; }
+    soltar();
+    atual = b;
+    b.setAttribute('aria-pressed', 'true');
+    amostraAudio.src = b.dataset.audio;
+    if (demoAudio && !demoAudio.paused) demoAudio.pause();
+    amostraAudio.play().catch(soltar);
+  }));
+  amostraAudio.addEventListener('timeupdate', () => {
+    if (atual && amostraAudio.duration) {
+      atual.querySelector('.amostra__barra i').style.width = `${(amostraAudio.currentTime / amostraAudio.duration) * 100}%`;
+    }
+  });
+  amostraAudio.addEventListener('ended', soltar);
+  if (demoAudio) demoAudio.addEventListener('play', () => { if (!amostraAudio.paused) { amostraAudio.pause(); soltar(); } });
+}
