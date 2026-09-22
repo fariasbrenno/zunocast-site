@@ -164,3 +164,42 @@ if (whats && WHATSAPP.numero) {
   whats.href = `https://wa.me/${WHATSAPP.numero}?text=${encodeURIComponent(WHATSAPP.mensagem)}`;
   whats.hidden = false;
 }
+
+// Carrossel de estilos (rádios de exemplo). Passa sozinho a cada 5 s; para de
+// vez quando o visitante clica numa seta ou num ponto, e pausa enquanto o mouse
+// ou o foco estão nele. Sem animação para quem pede menos movimento.
+const trilho = document.getElementById('carrossel-trilho');
+if (trilho) {
+  const slides = [...trilho.children];
+  const pontos = [...document.querySelectorAll('.carrossel__ponto')];
+  const caixa = trilho.parentElement;
+  const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let atual = 0;
+  let parado = semMovimento;
+  let pausa = false;
+
+  const ir = (i) => {
+    atual = (i + slides.length) % slides.length;
+    pontos.forEach((p, k) => p.setAttribute('aria-current', String(k === atual)));
+    // 'auto' seguiria o scroll-behavior do CSS (suave); sem movimento é 'instant'.
+    trilho.scrollTo({ left: slides[atual].offsetLeft, behavior: semMovimento ? 'instant' : 'smooth' });
+  };
+  const marcar = () => {
+    const i = Math.round(trilho.scrollLeft / trilho.clientWidth);
+    atual = Math.max(0, Math.min(slides.length - 1, i));
+    pontos.forEach((p, k) => p.setAttribute('aria-current', String(k === atual)));
+  };
+  let espera;
+  trilho.addEventListener('scroll', () => { clearTimeout(espera); espera = setTimeout(marcar, 80); });
+  caixa.querySelectorAll('[data-passo]').forEach((b) => b.addEventListener('click', () => {
+    parado = true;
+    ir(atual + Number(b.dataset.passo));
+  }));
+  pontos.forEach((p) => p.addEventListener('click', () => { parado = true; ir(Number(p.dataset.ir)); }));
+  ['mouseenter', 'focusin'].forEach((e) => caixa.addEventListener(e, () => { pausa = true; }));
+  ['mouseleave', 'focusout'].forEach((e) => caixa.addEventListener(e, () => { pausa = false; }));
+  trilho.addEventListener('touchstart', () => { parado = true; }, { passive: true });
+  setInterval(() => {
+    if (!parado && !pausa && !document.hidden) ir(atual + 1);
+  }, 5000);
+}

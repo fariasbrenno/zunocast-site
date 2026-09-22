@@ -370,6 +370,55 @@ img { display: block; max-width: 100%; height: auto; }
   .painel-secao__grade { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; }
 }
 
+/* ---------- carrossel de estilos (rádios de exemplo) ----------
+   Prints dos sites de exemplo em exemplos.zunofm.com/<estilo>, sem barra de
+   endereço; o link embaixo de cada um abre o site de verdade. Passa sozinho,
+   para quando o visitante interage ou pede menos movimento. */
+.estilos { margin-top: 3.5rem; }
+.estilos__titulo { color: var(--branco); font-size: 1.45rem; }
+.estilos__sub { margin-top: 0.5rem; color: var(--no-escuro); max-width: 40rem; }
+.carrossel { position: relative; margin-top: 1.5rem; }
+.carrossel__trilho {
+  list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: 100%;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;
+  border-radius: 12px; box-shadow: 0 34px 70px -30px rgba(0, 0, 0, 0.7);
+}
+.carrossel__trilho::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) { .carrossel__trilho { scroll-behavior: auto; } }
+.estilo { scroll-snap-align: start; background: #0b1030; min-width: 0; }
+.estilo img { width: 100%; }
+.estilo__legenda {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; padding: 0.9rem 1.1rem;
+  background: #111a4a; color: var(--no-escuro);
+}
+.estilo__tag {
+  padding: 0.15rem 0.65rem; border-radius: 999px; background: var(--sol); color: var(--tinta);
+  font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.estilo__legenda b { color: var(--branco); }
+.estilo__legenda a { margin-left: auto; color: var(--sol); font-weight: 700; }
+.carrossel__seta {
+  position: absolute; top: 42%; width: 3rem; height: 3rem; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(14, 22, 56, 0.82); color: var(--branco); display: grid; place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.carrossel__seta::after {
+  content: ""; width: 0.7rem; height: 0.7rem; border-right: 3px solid currentColor; border-bottom: 3px solid currentColor;
+}
+.carrossel__seta--antes { left: 0.75rem; }
+.carrossel__seta--antes::after { transform: translateX(2px) rotate(135deg); }
+.carrossel__seta--depois { right: 0.75rem; }
+.carrossel__seta--depois::after { transform: translateX(-2px) rotate(-45deg); }
+.carrossel__seta:hover { background: var(--noite); }
+.carrossel__pontos { display: flex; justify-content: center; gap: 0.35rem; margin-top: 1rem; }
+.carrossel__ponto { width: 2.75rem; height: 2.75rem; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.carrossel__ponto::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: rgba(233, 238, 255, 0.35); transition: background 0.2s ease, transform 0.2s ease; }
+.carrossel__ponto[aria-current="true"]::before { background: var(--sol); transform: scale(1.25); }
+@media (max-width: 40rem) {
+  .carrossel__seta { width: 2.5rem; height: 2.5rem; top: 30%; }
+  .estilo__legenda a { margin-left: 0; }
+}
+
 /* ---------- parede (suporte e fecho) ---------- */
 .parede { background: var(--noite); color: var(--branco); padding: var(--secao) 0; }
 .suporte { display: grid; gap: 3rem; }
