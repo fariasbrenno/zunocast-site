@@ -374,7 +374,8 @@ img { display: block; max-width: 100%; height: auto; }
    Prints dos sites de exemplo em exemplos.zunofm.com/<estilo>, sem barra de
    endereço; o link embaixo de cada um abre o site de verdade. Passa sozinho,
    para quando o visitante interage ou pede menos movimento. */
-.estilos { margin-top: 3.5rem; }
+.estilos { margin-top: 2.75rem; }
+.estilos .vitrine__legenda { text-align: center; }
 .estilos__titulo { color: var(--branco); font-size: 1.45rem; }
 .estilos__sub { margin-top: 0.5rem; color: var(--no-escuro); max-width: 40rem; }
 .carrossel { position: relative; margin-top: 1.5rem; }
