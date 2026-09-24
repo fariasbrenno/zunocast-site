@@ -483,6 +483,71 @@ mark.realce { color: inherit; background: linear-gradient(transparent 56%, rgba(
 }
 .janela figcaption { margin-top: 1rem; max-width: 26rem; font-size: 0.88rem; color: var(--no-escuro-suave); }
 
+/* ---------- ao vivo do computador ----------
+   A prova e a tela real do programa, do jeito que o suporte deixa (prints de
+   24/09/2026 no PC do Brenno), com numeros por cima explicando cada parte, e a
+   "ficha do servico feito". O diferencial aparece no que foi feito, sem ser dito. */
+.aovivo__topo { max-width: 48rem; }
+.aovivo__fita { font-size: 1.2rem; margin-bottom: 1.4rem; display: inline-block; }
+.aovivo__topo h2 { max-width: 22ch; }
+.aovivo__lead { margin-top: 1.25rem; color: var(--tinta-suave); max-width: 42rem; }
+
+.aovivo__vitrine { margin-top: 2.75rem; display: grid; gap: 2rem; }
+.aovivo__vitrine > * { min-width: 0; }
+.programa { margin: 0; border-radius: 12px; overflow: hidden; background: #0b1030; box-shadow: 0 34px 70px -30px rgba(14, 22, 56, 0.75); }
+.programa__barra {
+  display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.9rem; background: #1A2350;
+  color: rgba(233, 238, 255, 0.7); font-size: 0.8rem;
+}
+.programa__barra span { width: 0.62rem; height: 0.62rem; border-radius: 50%; background: rgba(233, 238, 255, 0.28); }
+.programa__barra b { margin-left: 0.6rem; font-weight: 600; }
+.programa__tela { position: relative; }
+.programa__tela img { width: 100%; }
+.pino {
+  position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%);
+  width: clamp(1.45rem, 2.6vw, 2.1rem); height: clamp(1.45rem, 2.6vw, 2.1rem); border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; font-size: clamp(0.78rem, 1.3vw, 1rem);
+  background: var(--sol); color: var(--tinta); box-shadow: 0 0 0 3px rgba(11, 16, 48, 0.85), 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+.programa figcaption { padding: 0.8rem 1rem; font-size: 0.9rem; background: var(--branco); color: var(--tinta-suave); }
+.pinos { margin: 0; padding: 0; list-style: none; counter-reset: pn; display: grid; gap: 1rem; align-content: start; }
+.pinos li { counter-increment: pn; position: relative; padding: 0.1rem 0 0 2.75rem; color: var(--tinta-suave); }
+.pinos li b { color: var(--tinta); }
+.pinos li::before {
+  content: counter(pn); position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 800; font-size: 0.92rem; background: var(--sol); color: var(--tinta);
+}
+@media (min-width: 62rem) { .aovivo__vitrine { grid-template-columns: minmax(0, 2.8fr) minmax(0, 1fr); gap: 2.25rem; align-items: center; } }
+
+.aovivo__base { margin-top: 4rem; display: grid; gap: 3.25rem; }
+.aovivo__base > * { min-width: 0; }
+.ficha { align-self: start; }
+.ficha__lista { list-style: none; margin: 0; padding: 0; }
+.ficha__lista li {
+  display: grid; grid-template-columns: 1.4rem minmax(0, 1fr); gap: 0.7rem; align-items: start;
+  padding: 0.7rem 0; border-bottom: 1px dashed rgba(27, 44, 107, 0.22); font-weight: 600;
+}
+.ficha__lista li:last-child { color: var(--noite); }
+.ficha__lista .icone { color: var(--coral); margin-top: 0.15rem; }
+.caminhos h3 { color: var(--noite); font-size: 1.35rem; }
+.caminho { margin-top: 1.1rem; padding: 1.25rem 1.35rem; border-radius: var(--raio); background: var(--branco); box-shadow: 0 14px 34px -24px rgba(14, 22, 56, 0.45); }
+.caminho h4 { font-size: 1.2rem; color: var(--noite); }
+.caminho p { margin-top: 0.45rem; color: var(--tinta-suave); }
+.caminho p.caminho__selo {
+  display: inline-block; margin: 0 0 0.5rem; padding: 0.12rem 0.6rem; border-radius: 999px;
+  background: var(--sol); color: var(--tinta); font-size: 0.8rem; font-weight: 700;
+}
+.caminho__telas { margin-top: 1rem; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 0.75rem; align-items: start; }
+.caminho__telas img { width: 100%; border-radius: 8px; box-shadow: 0 10px 24px -14px rgba(14, 22, 56, 0.6); }
+.caminho__telas--uma { grid-template-columns: minmax(0, 1fr); max-width: 30rem; }
+@media (min-width: 62rem) {
+  .aovivo__base { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4.5rem; }
+  .ficha { position: sticky; top: 2.5rem; }
+}
+
+.aovivo__acao { margin-top: 3.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.aovivo__acao span { color: var(--tinta-suave); font-weight: 600; }
+
 /* ---------- pra quem e ---------- */
 .quem { background: var(--papel); }
 .quem__faixa { position: relative; background: var(--madrugada); color: var(--branco); }
