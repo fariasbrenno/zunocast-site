@@ -3,6 +3,38 @@
    azul-noite, a placa NO AR que acende uma vez, os planos como canais de uma
    mesa de som com os nomes na fita crepe. O coral é a luz da placa e o botão
    de assinar, mais nada. Paleta: autoradio/docs/identidade-visual.md. */
+/* Fontes servidas pelo próprio site (antes vinham do Google Fonts e a
+   página abria em outra letra e dava um pulo). As "Reserva" são a Arial
+   ajustada para ocupar o mesmo espaço da Archivo enquanto ela carrega:
+   texto corrido e títulos (largos e pesados) têm medidas diferentes. */
+@font-face {
+  font-family: "Archivo"; src: url("../fonts/archivo-latin.woff2") format("woff2");
+  font-weight: 400 800; font-stretch: 62% 125%; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Permanent Marker"; src: url("../fonts/permanent-marker-latin.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Unica One"; src: url("../fonts/unica-one-latin.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Archivo Reserva"; src: local("Arial"), local("ArialMT");
+  font-weight: 400 600;
+  size-adjust: 98.27%; ascent-override: 89.35%; descent-override: 21.37%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Archivo Reserva"; src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 700 800;
+  size-adjust: 98%; ascent-override: 89.6%; descent-override: 21.4%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Archivo Reserva Titulo"; src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 700 800;
+  size-adjust: 117.4%; ascent-override: 74.8%; descent-override: 17.9%; line-gap-override: 0%;
+}
 :root {
   --noite: #1B2C6B;
   --madrugada: #0E1638;
@@ -21,7 +53,8 @@
   --linha-escura: rgba(233, 238, 255, 0.16);
   --fita: #E9DDB8;
 
-  --fonte: "Archivo", "Segoe UI", Roboto, Arial, sans-serif;
+  --fonte: "Archivo", "Archivo Reserva", "Segoe UI", Roboto, Arial, sans-serif;
+  --fonte-titulo: "Archivo", "Archivo Reserva Titulo", "Segoe UI", Roboto, Arial, sans-serif;
   --marcador: "Permanent Marker", "Comic Sans MS", cursive;
 
   --raio: 10px;
@@ -38,7 +71,7 @@ body {
   margin: 0; font-family: var(--fonte); font-size: 1.125rem; line-height: 1.6;
   color: var(--tinta); background: var(--papel); caret-color: var(--coral);
 }
-h1, h2, h3 { margin: 0; line-height: 1.08; text-wrap: balance; font-variation-settings: "wdth" 116; }
+h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); line-height: 1.08; text-wrap: balance; font-variation-settings: "wdth" 116; }
 h1 { font-size: clamp(2.5rem, 6.2vw, 4.75rem); font-weight: 800; letter-spacing: -0.02em; }
 h2 { font-size: clamp(1.85rem, 3.9vw, 2.85rem); font-weight: 760; letter-spacing: -0.012em; }
 h3 { font-size: 1.2rem; font-weight: 720; line-height: 1.25; }
