@@ -22,7 +22,7 @@ li svg{width:34px;height:34px;flex:none;fill:none;stroke:#FFC23D;stroke-width:3;
 <script>
 const planos = {
   noar: { nome: 'No Ar', foto: '../estudio-igreja.jpg', itens: ['Até 100 ouvintes ao mesmo tempo', 'Cerca de 2.500 músicas', 'Suporte remoto incluso'] },
-  estudio: { nome: 'Estúdio', destaque: true, foto: '../estudio-casa.jpg', itens: ['Até 500 ouvintes ao mesmo tempo', 'Som de FM e 5.000 músicas', 'Suporte remoto incluso'] },
+  estudio: { nome: 'Estúdio', destaque: true, foto: '../estudio-casa.jpg', itens: ['Ouvintes ilimitados', 'Som de FM e 5.000 músicas', 'Suporte remoto incluso'] },
   emissora: { nome: 'Emissora', foto: '../estudio-profissional.jpg', posicao: '68% center', itens: ['2 rádios, ouvintes ilimitados', 'Som de alta qualidade', 'Prioridade no suporte remoto'] },
 };
 const p = planos[new URLSearchParams(location.search).get('plano') || 'noar'];
