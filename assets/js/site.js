@@ -156,12 +156,14 @@ window.addEventListener('resize', letreiro);
 
 document.querySelectorAll('[data-plano]').forEach((a) => {
   const link = CHECKOUT[a.dataset.plano];
-  if (link) a.href = link;
+  if (link) a.href = window.zunoRastro ? window.zunoRastro.checkout(link) : link;
 });
 
 const whats = document.getElementById('whats');
 if (whats && WHATSAPP.numero) {
-  whats.href = `https://wa.me/${WHATSAPP.numero}?text=${encodeURIComponent(WHATSAPP.mensagem)}`;
+  // O código do visitante vai na mensagem: o ERP liga a conversa à visita (rastro, 26/09/2026).
+  const ref = window.zunoRastro ? window.zunoRastro.refWhatsApp : '';
+  whats.href = `https://wa.me/${WHATSAPP.numero}?text=${encodeURIComponent(WHATSAPP.mensagem + ref)}`;
   whats.hidden = false;
 }
 
