@@ -580,6 +580,10 @@ mark.realce { color: inherit; background: linear-gradient(transparent 56%, rgba(
 
 .aovivo__acao { margin-top: 3.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .aovivo__acao span { color: var(--tinta-suave); font-weight: 600; }
+/* CTAs ao longo do site (26/09/2026): botão no fim das seções, com uma frase que tira a última dúvida. */
+.secao__acao { grid-column: 1 / -1; margin-top: 2.75rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem 1rem; text-align: center; }
+.secao__acao span { color: var(--tinta-suave); font-weight: 600; }
+.parede .secao__acao span { color: var(--no-escuro); }
 
 /* ---------- pra quem e ---------- */
 .quem { background: var(--papel); }
