@@ -156,7 +156,12 @@ window.addEventListener('resize', letreiro);
 
 document.querySelectorAll('[data-plano]').forEach((a) => {
   const link = CHECKOUT[a.dataset.plano];
-  if (link) a.href = window.zunoRastro ? window.zunoRastro.checkout(link) : link;
+  if (link) {
+    a.href = window.zunoRastro ? window.zunoRastro.checkout(link) : link;
+    // O checkout abre em outra aba (26/09/2026): o site continua aberto atrás.
+    a.target = '_blank';
+    a.rel = 'noopener';
+  }
 });
 
 const whats = document.getElementById('whats');
