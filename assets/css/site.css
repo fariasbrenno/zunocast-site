@@ -748,3 +748,31 @@ mark.realce { color: inherit; background: linear-gradient(transparent 56%, rgba(
 @media (max-width: 959px), (prefers-reduced-motion: reduce) {
   .area-cliente__tela { transform: none; transition: none; }
 }
+
+/* Checklist antes dos planos (27/09/2026): tudo o que vem na assinatura, marcado. */
+.checklist { position: relative; overflow: hidden; }
+.checklist::before {
+  content: ""; position: absolute; left: -15%; top: 10%; width: 60%; height: 85%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(34, 163, 90, 0.22), rgba(255, 194, 61, 0.08) 55%, transparent);
+}
+.checklist .caixa { position: relative; }
+.checklist__grade { display: grid; gap: 2.5rem; align-items: start; }
+.checklist__grade > * { min-width: 0; }
+.checklist__olho { margin: 0 0 0.75rem; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sol); }
+.checklist__lead { margin-top: 1.25rem; color: var(--no-escuro); }
+.checklist__lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+.checklist__lista li {
+  position: relative; padding: 0.85rem 1rem 0.85rem 3.1rem; border-radius: var(--raio);
+  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--linha-escura); color: var(--no-escuro); line-height: 1.4;
+}
+.checklist__lista li::before {
+  content: "\2713"; position: absolute; left: 1rem; top: 0.95rem; width: 1.45rem; height: 1.45rem; border-radius: 50%;
+  display: grid; place-items: center; font-size: 0.82rem; font-weight: 800; background: #22A35A; color: var(--branco);
+  box-shadow: 0 0 0 4px rgba(34, 163, 90, 0.18);
+}
+.checklist__lista strong { display: block; color: var(--branco); font-size: 1.05rem; }
+@media (min-width: 960px) {
+  .checklist__grade { grid-template-columns: 5fr 7fr; }
+  .checklist__texto { position: sticky; top: 6rem; }
+  .checklist__lista { grid-template-columns: 1fr 1fr; }
+}
